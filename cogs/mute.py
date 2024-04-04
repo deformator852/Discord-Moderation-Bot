@@ -9,7 +9,7 @@ class Mute(commands.Cog):
         self.bot = bot
 
     @commands.has_permissions(mute_members=True)
-    @commands.slash_command()
+    @commands.slash_command(description="The command mute the user")
     async def mute(
         self,
         inter: disnake.ApplicationCommandInteraction,
@@ -18,6 +18,8 @@ class Mute(commands.Cog):
         reason: str,
     ):
         if member.top_role > inter.author.top_role:
+            file_path = os.path.join(os.getcwd(), "images", "mute.jpg")
+            file = disnake.File(file_path, filename="mute.jpg")
             minutes = int(minutes)
             time = datetime.datetime.now() + datetime.timedelta(minutes=minutes)
             await member.timeout(reason=reason, until=time)
@@ -25,13 +27,11 @@ class Mute(commands.Cog):
                 title=f"Mute {member.name} because of {reason}.Unmute via {minutes} minutes",
                 color=0xFF0000,
             )
-            embed.set_image(
-                url="https://image.myanimelist.net/ui/OK6W_koKDTOqqqLDbIoPAtw_VHpFpDEOHSIL8jnwywI"
-            )
+            embed.set_image(file=file)
             await inter.response.send_message(embed=embed)
 
     @commands.has_permissions(mute_members=True)
-    @commands.slash_command()
+    @commands.slash_command(description="The command mute the user")
     async def unmute(
         self,
         inter: disnake.ApplicationCommandInteraction,

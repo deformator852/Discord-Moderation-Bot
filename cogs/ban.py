@@ -1,3 +1,4 @@
+import os
 from disnake.ext import commands
 
 import disnake
@@ -9,8 +10,11 @@ class Ban(commands.Cog):
 
     @commands.has_permissions(administrator=True)
     @commands.slash_command(description="The command ban the user")
-    async def ban(self, ctx, user: disnake.Member):
+    async def ban(self, ctx, reason: str, user: disnake.Member):
+        file_path = os.path.join(os.getcwd(), "images", "ban.jpg")
+        file = disnake.File(file_path, filename="ban.jpg")
         embed = disnake.Embed(title=f"Ban {user.name}", color=0xFF0000)
+        embed.set_image(file=file)
         await ctx.guild.ban(user)
         await ctx.send(embed=embed, ephemeral=True)
 
