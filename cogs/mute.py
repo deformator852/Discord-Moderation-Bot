@@ -1,6 +1,7 @@
 import datetime
 import os
 from disnake.ext import commands
+from enums import Color
 import disnake
 
 
@@ -25,7 +26,7 @@ class Mute(commands.Cog):
             await member.timeout(reason=reason, until=time)
             embed = disnake.Embed(
                 title=f"Mute {member.name} because of {reason}.Unmute via {minutes} minutes",
-                color=0xFF0000,
+                color=Color.RED.value,
             )
             embed.set_image(file=file)
             await inter.response.send_message(embed=embed)
@@ -39,7 +40,9 @@ class Mute(commands.Cog):
     ):
         if member.top_role > inter.author.top_role:
             await member.timeout(until=None)
-            embed = disnake.Embed(title=f"Unmute {member.name}", color=0x00FF00)
+            embed = disnake.Embed(
+                title=f"Unmute {member.name}", color=Color.GREEN.value
+            )
             await inter.response.send_message(embed=embed)
 
 

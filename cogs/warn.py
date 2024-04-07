@@ -1,6 +1,8 @@
 from disnake.ext import commands
 import disnake
 
+from enums import Color
+
 
 class Warn(commands.Cog):
     def __init__(self, bot) -> None:
@@ -14,7 +16,9 @@ class Warn(commands.Cog):
         reason: str,
     ):
         embed = disnake.Embed(
-            title="Warning", description=f"{member.mention} {reason}", color=0xFFA500
+            title="Warning",
+            description=f"{member.mention} {reason}",
+            color=Color.ORANGE.value,
         )
         await inter.response.send_message(
             embed=embed,

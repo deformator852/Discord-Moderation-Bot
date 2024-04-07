@@ -3,6 +3,8 @@ import datetime
 from disnake.ext import commands
 import disnake
 
+from enums import Color
+
 
 class Lock(commands.Cog):
     def __init__(self, bot) -> None:
@@ -17,7 +19,9 @@ class Lock(commands.Cog):
         time = datetime.datetime.now() + datetime.timedelta(minutes=minutes)
         cool_time = disnake.utils.format_dt(time, "t")
         embed = disnake.Embed(
-            title="Lock channel", description=f"Channel will unlock in: {cool_time}"
+            title="Lock channel",
+            description=f"Channel will unlock in: {cool_time}",
+            color=Color.RED.value,
         )
         await inter.response.send_message(
             embed=embed,

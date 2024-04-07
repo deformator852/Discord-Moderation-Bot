@@ -7,7 +7,7 @@ class Clear(commands.Cog):
         self.bot = bot
 
     @commands.has_permissions(administrator=True)
-    @commands.slash_command()
+    @commands.slash_command(description="Clear the chat")
     async def clear(
         inter: disnake.ApplicationCommandInteraction, limit: int | None = None
     ):
