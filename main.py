@@ -3,7 +3,7 @@ from disnake.ext import commands
 import os
 
 
-TOKEN = "MTIyNDk5MDEyMTE3OTQ4NDIyMg.GeRZDl.qzcrhUeCNOWc7chcJj9xyskPl8gn6BTujlMEJI"
+TOKEN = ""
 intents = disnake.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
